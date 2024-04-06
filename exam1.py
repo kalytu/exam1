@@ -30,7 +30,7 @@ def main():
                 if letter in guessed_letters:
                     display_word += letter + " "
                 else:
-                    display_word += "_ "
+                    display_word += "х "
             print("Слово:", display_word)
             print("Кількість спроб:", attempts)
             
