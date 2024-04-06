@@ -1,10 +1,18 @@
 import random
 
 def load_words():
-    return ["полуниця", "авто", "клей", "телефон", "папір", "шкарпетки", "собака"]
+    return {
+        "полуниця": "це смачна ягода",
+        "авто": "це засіб транспорту",
+        "клей": "це речовина для склеювання",
+        "телефон": "це пристрій для зв'язку",
+        "папір": "це матеріал для запису або малювання",
+        "шкарпетки": "це одяг для ніг",
+        "собака": "це домашня тварина"
+    }
 
 def choose_word(word_list):
-    return random.choice(word_list)
+    return random.choice(list(word_list.keys()))
 
 def main():
     print("Вітаємо у грі слова!")
@@ -13,6 +21,8 @@ def main():
         current_word = choose_word(words)
         guessed_letters = []
         attempts = 6
+        
+        print("Підказка:", words[current_word])
         
         while attempts > 0:
             display_word = ""
@@ -28,7 +38,7 @@ def main():
 
             if guess == "exit" or guess == "quit":
                 print("Дякуємо за гру!")
-                return  # Завершуємо функцію main() і гру
+                return 
 
             try:
                 if len(guess) != 1 or not guess.isalpha():
@@ -40,7 +50,7 @@ def main():
                     print("Вітаю! Ви вгадали літеру.")
                     guessed_letters.append(guess)
                     if all(letter in guessed_letters for letter in current_word):
-                        print("Вітаю! Ви перемогли! Слово було '{}'.".format(current_word))
+                        print("Ви перемогли!")
                         break
                 else:
                     print("На жаль, такої літери немає у слові.")
@@ -54,7 +64,7 @@ def main():
         play_again = input("Бажаєте зіграти ще раз? (так/ні): ").lower()
         if play_again != "так":
             print("Дякуємо за гру!")
-            break  # Завершуємо гру
+            break 
 
 if __name__ == "__main__":
     main()
